@@ -5,6 +5,8 @@ import { PhotoSection } from "./components/PhotoSection";
 import { ServicesSection } from "./components/ServicesSection";
 import { PortfolioSection } from "./components/PortfolioSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
+import { NewsSection } from "./components/NewsSection";
+import { FooterSection } from "./components/FooterSection";
 
 const NAV_LINKS = ["About", "Services", "Projects", "News", "Contact"] as const;
 
@@ -147,6 +149,8 @@ export default function Home() {
     <ServicesSection />
     <PortfolioSection />
     <TestimonialsSection />
+    <NewsSection />
+    <FooterSection />
     </>
   );
 }
