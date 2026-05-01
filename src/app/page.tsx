@@ -2,6 +2,9 @@ import { MobileNav } from "./components/MobileNav";
 import { AboutSection } from "./components/AboutSection";
 import { AboutPortraitSection } from "./components/AboutPortraitSection";
 import { PhotoSection } from "./components/PhotoSection";
+import { ServicesSection } from "./components/ServicesSection";
+import { PortfolioSection } from "./components/PortfolioSection";
+import { TestimonialsSection } from "./components/TestimonialsSection";
 
 const NAV_LINKS = ["About", "Services", "Projects", "News", "Contact"] as const;
 
@@ -141,6 +144,9 @@ export default function Home() {
     <AboutSection />
     <AboutPortraitSection />
     <PhotoSection />
+    <ServicesSection />
+    <PortfolioSection />
+    <TestimonialsSection />
     </>
   );
 }
