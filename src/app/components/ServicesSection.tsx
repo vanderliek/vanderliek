@@ -69,7 +69,7 @@ export function ServicesSection() {
                   {service.title}
                 </p>
                 <div className="flex items-start gap-6 max-[989px]:flex-col max-[989px]:gap-4 max-[989px]:w-full">
-                  <p className="text-[14px] text-white leading-[1.3] tracking-[-0.04em] w-[393px] max-[989px]:max-w-[60ch]">
+                  <p className="text-[14px] text-white leading-[1.3] tracking-[-0.04em] w-[393px] max-[989px]:w-full">
                     {service.description}
                   </p>
                   <div className="size-[151px] shrink-0 overflow-hidden">
