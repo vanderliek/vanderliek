@@ -7,13 +7,11 @@ import { PortfolioSection } from "./components/PortfolioSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
 import { NewsSection } from "./components/NewsSection";
 import { FooterSection } from "./components/FooterSection";
-import { client } from "@/sanity/client";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { newsItemsQuery, projectsQuery, testimonialsQuery } from "@/sanity/lib/queries";
 import type { NewsItem } from "./components/NewsSection";
 import type { Project } from "./components/PortfolioSection";
 import type { Testimonial } from "./components/TestimonialsSection";
-
-export const revalidate = 3600;
 
 const NAV_LINKS = ["About", "Services", "Projects", "News", "Contact"] as const;
 
@@ -37,20 +35,12 @@ function TalkButton({ className }: { className?: string }) {
   );
 }
 
-async function fetchSanityData(): Promise<[NewsItem[], Project[], Testimonial[]]> {
-  try {
-    return await Promise.all([
-      client.fetch<NewsItem[]>(newsItemsQuery),
-      client.fetch<Project[]>(projectsQuery),
-      client.fetch<Testimonial[]>(testimonialsQuery),
-    ]);
-  } catch {
-    return [[], [], []];
-  }
-}
-
 export default async function Home() {
-  const [newsItems, projects, testimonials] = await fetchSanityData();
+  const [{ data: newsItems }, { data: projects }, { data: testimonials }] = await Promise.all([
+    sanityFetch({ query: newsItemsQuery }),
+    sanityFetch({ query: projectsQuery }),
+    sanityFetch({ query: testimonialsQuery }),
+  ]) as [{ data: NewsItem[] }, { data: Project[] }, { data: Testimonial[] }];
   return (
     <>
     {/* Hero */}
@@ -171,6 +161,7 @@ export default async function Home() {
     <TestimonialsSection testimonials={testimonials} />
     <NewsSection items={newsItems} />
     <FooterSection />
+    <SanityLive />
     </>
   );
 }
