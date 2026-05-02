@@ -1,20 +1,7 @@
-const NEWS_ITEMS = [
-  {
-    image: "https://www.figma.com/api/mcp/asset/65d81167-5db7-4e49-8603-48d4091723e8",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    image: "https://www.figma.com/api/mcp/asset/68d6337a-98f8-4574-bde1-a59b684c1be8",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    image: "https://www.figma.com/api/mcp/asset/94609121-fe76-417d-b9b7-1481eade1e4e",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-];
+export type NewsItem = {
+  imageUrl: string;
+  description: string;
+};
 
 function ArrowIcon() {
   return (
@@ -30,11 +17,11 @@ function ArrowIcon() {
   );
 }
 
-function NewsCard({ image, description }: { image: string; description: string }) {
+function NewsCard({ imageUrl, description }: NewsItem) {
   return (
     <div className="flex flex-col gap-4">
       <div className="relative h-[470px] w-full overflow-hidden shrink-0">
-        <img src={image} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
       </div>
       <p className="text-[14px] text-[#1f1f1f] leading-[1.3] tracking-[-0.04em] font-normal">
         {description}
@@ -47,8 +34,8 @@ function NewsCard({ image, description }: { image: string; description: string }
   );
 }
 
-export function NewsSection() {
-  const [item1, item2, item3] = NEWS_ITEMS;
+export function NewsSection({ items }: { items: NewsItem[] }) {
+  const [item1, item2, item3] = items;
 
   return (
     <section id="news" className="bg-[#f3f3f3]">
@@ -79,22 +66,28 @@ export function NewsSection() {
           <div className="flex-1 min-w-0 ml-[246px] overflow-x-auto">
             <div className="flex items-start gap-[31px] pr-8" style={{ width: "max-content" }}>
 
-              <div className="w-[354px] shrink-0">
-                <NewsCard {...item1} />
-              </div>
+              {item1 && (
+                <div className="w-[354px] shrink-0">
+                  <NewsCard {...item1} />
+                </div>
+              )}
 
-              <div className="w-px self-stretch shrink-0 bg-black/20" />
+              {item1 && item2 && <div className="w-px self-stretch shrink-0 bg-black/20" />}
 
               {/* Middle card offset 120px down */}
-              <div className="w-[354px] shrink-0 pt-[120px]">
-                <NewsCard {...item2} />
-              </div>
+              {item2 && (
+                <div className="w-[354px] shrink-0 pt-[120px]">
+                  <NewsCard {...item2} />
+                </div>
+              )}
 
-              <div className="w-px self-stretch shrink-0 bg-black/20" />
+              {item2 && item3 && <div className="w-px self-stretch shrink-0 bg-black/20" />}
 
-              <div className="w-[354px] shrink-0">
-                <NewsCard {...item3} />
-              </div>
+              {item3 && (
+                <div className="w-[354px] shrink-0">
+                  <NewsCard {...item3} />
+                </div>
+              )}
 
             </div>
           </div>
@@ -119,7 +112,7 @@ export function NewsSection() {
         {/* Horizontal scroll strip — peeks next card */}
         <div className="-mx-4 overflow-x-auto">
           <div className="flex gap-4 px-4" style={{ width: "max-content" }}>
-            {NEWS_ITEMS.map((item, i) => (
+            {items.map((item, i) => (
               <div key={i} className="w-[300px] shrink-0">
                 <NewsCard {...item} />
               </div>

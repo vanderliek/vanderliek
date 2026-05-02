@@ -1,29 +1,9 @@
-const PROJECTS = [
-  {
-    title: "Surfers Paradise",
-    tags: ["Social Media", "Photography"],
-    image: "https://www.figma.com/api/mcp/asset/19058582-5fe4-4b70-80d3-0329279d76d4",
-    tallCard: true,
-  },
-  {
-    title: "Cyberpunk Caffe",
-    tags: ["Social Media", "Photography"],
-    image: "https://www.figma.com/api/mcp/asset/3d11b58b-890c-443f-bea5-d2f1239d22ef",
-    tallCard: false,
-  },
-  {
-    title: "Agency 976",
-    tags: ["Social Media", "Photography"],
-    image: "https://www.figma.com/api/mcp/asset/95fe2b2f-2739-414a-8e78-e4b5112d622b",
-    tallCard: false,
-  },
-  {
-    title: "Minimal Playground",
-    tags: ["Social Media", "Photography"],
-    image: "https://www.figma.com/api/mcp/asset/d0c901c5-20b3-4aef-8488-b744a7261457",
-    tallCard: true,
-  },
-];
+export type Project = {
+  title: string;
+  tags: string[];
+  imageUrl: string;
+  tallCard: boolean;
+};
 
 function ArrowIcon() {
   return (
@@ -63,18 +43,18 @@ function CornerSvg({ className }: { className?: string }) {
 function ProjectCard({
   title,
   tags,
-  image,
+  imageUrl,
   imageClass,
 }: {
   title: string;
   tags: string[];
-  image: string;
+  imageUrl: string;
   imageClass: string;
 }) {
   return (
     <div className="flex flex-col gap-[10px] w-full shrink-0">
       <div className={`relative flex items-end pb-4 pl-4 overflow-hidden ${imageClass}`}>
-        <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover" />
+        <img src={imageUrl} alt={title} className="absolute inset-0 w-full h-full object-cover" />
         <div className="relative flex gap-3 flex-wrap">
           {tags.map((tag) => (
             <span
@@ -127,8 +107,8 @@ function CtaBox({ className }: { className?: string }) {
   );
 }
 
-export function PortfolioSection() {
-  const [surfers, cyberpunk, agency, minimal] = PROJECTS;
+export function PortfolioSection({ projects }: { projects: Project[] }) {
+  const [p0, p1, p2, p3] = projects;
 
   return (
     <section id="projects" className="px-8 py-[80px] max-[989px]:px-4 max-[989px]:py-12">
@@ -172,24 +152,23 @@ export function PortfolioSection() {
         <div className="max-[989px]:hidden flex gap-6 w-full">
           {/* Left column — stretches to row height, items evenly distributed */}
           <div className="flex-1 self-stretch flex flex-col justify-between items-start min-w-0">
-            <ProjectCard {...surfers} imageClass="h-[744px]" />
-            <ProjectCard {...cyberpunk} imageClass="h-[699px]" />
+            {p0 && <ProjectCard {...p0} imageClass={p0.tallCard ? "h-[744px]" : "h-[699px]"} />}
+            {p1 && <ProjectCard {...p1} imageClass={p1.tallCard ? "h-[744px]" : "h-[699px]"} />}
             <CtaBox />
           </div>
 
           {/* Right column — offset 240px from top */}
           <div className="flex-1 flex flex-col gap-[117px] pt-[240px] min-w-0">
-            <ProjectCard {...agency} imageClass="h-[699px]" />
-            <ProjectCard {...minimal} imageClass="h-[744px]" />
+            {p2 && <ProjectCard {...p2} imageClass={p2.tallCard ? "h-[744px]" : "h-[699px]"} />}
+            {p3 && <ProjectCard {...p3} imageClass={p3.tallCard ? "h-[744px]" : "h-[699px]"} />}
           </div>
         </div>
 
         {/* ── Mobile single-column layout ── */}
         <div className="min-[990px]:hidden flex flex-col gap-6">
-          <ProjectCard {...surfers} imageClass="h-[390px]" />
-          <ProjectCard {...cyberpunk} imageClass="h-[390px]" />
-          <ProjectCard {...agency} imageClass="h-[390px]" />
-          <ProjectCard {...minimal} imageClass="h-[390px]" />
+          {projects.map((p) => (
+            <ProjectCard key={p.title} {...p} imageClass="h-[390px]" />
+          ))}
           <CtaBox />
         </div>
 
