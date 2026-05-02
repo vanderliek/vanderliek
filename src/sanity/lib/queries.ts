@@ -1,0 +1,25 @@
+import { groq } from "next-sanity";
+
+export const newsItemsQuery = groq`*[_type == "newsItem"] | order(order asc) {
+  "imageUrl": image.asset->url,
+  description
+}`;
+
+export const projectsQuery = groq`*[_type == "project"] | order(order asc) {
+  title,
+  tags,
+  "imageUrl": image.asset->url,
+  tallCard
+}`;
+
+export const testimonialsQuery = groq`*[_type == "testimonial"] | order(order asc) {
+  "logoUrl": logo.asset->url,
+  logoWidth,
+  logoHeight,
+  quote,
+  author,
+  rotate,
+  desktopLeft,
+  desktopTop,
+  desktopZ
+}`;

@@ -1,5 +1,5 @@
-type Testimonial = {
-  logo: string;
+export type Testimonial = {
+  logoUrl: string;
   logoWidth: number;
   logoHeight: number;
   quote: string;
@@ -10,61 +10,14 @@ type Testimonial = {
   desktopZ: number;
 };
 
-const TESTIMONIALS: Testimonial[] = [
-  {
-    logo: "https://www.figma.com/api/mcp/asset/bba29749-70fd-4dda-b6b4-4e8504133dfa",
-    logoWidth: 138,
-    logoHeight: 19,
-    quote: "Professional, precise, and incredibly fast at handling complex product visualizations and templates.",
-    author: "Lukas Weber",
-    rotate: 2.9,
-    desktopLeft: "47%",
-    desktopTop: "212px",
-    desktopZ: 1,
-  },
-  {
-    logo: "https://www.figma.com/api/mcp/asset/2af85c2f-2248-407d-bfb2-6b047aad4825",
-    logoWidth: 143,
-    logoHeight: 19,
-    quote: "A brilliant creative partner who transformed our vision into a unique, high-impact brand identity. Their ability to craft everything from custom mascots to polished logos is truly impressive.",
-    author: "Marko Stojković",
-    rotate: -6.85,
-    desktopLeft: "7%",
-    desktopTop: "102px",
-    desktopZ: 1,
-  },
-  {
-    logo: "https://www.figma.com/api/mcp/asset/6113414c-4cdf-4d0e-a6d0-a8159ca8970a",
-    logoWidth: 109,
-    logoHeight: 31,
-    quote: "A strategic partner who balances stunning aesthetics with high-performance UX for complex platforms. They don't just make things look good; they solve business problems through visual clarity.",
-    author: "Sarah Jenkins",
-    rotate: 2.23,
-    desktopLeft: "21%",
-    desktopTop: "553px",
-    desktopZ: 20,
-  },
-  {
-    logo: "https://www.figma.com/api/mcp/asset/99120810-dee4-4241-ac9f-df702f28e4b5",
-    logoWidth: 81,
-    logoHeight: 36,
-    quote: "An incredibly versatile designer who delivers consistent quality across a wide range of styles and formats.",
-    author: "Sofia Martínez",
-    rotate: -4.15,
-    desktopLeft: "68.5%",
-    desktopTop: "546px",
-    desktopZ: 20,
-  },
-];
-
 function Card({
-  logo,
+  logoUrl,
   logoWidth,
   logoHeight,
   quote,
   author,
   cardWidth,
-}: Pick<Testimonial, "logo" | "logoWidth" | "logoHeight" | "quote" | "author"> & {
+}: Pick<Testimonial, "logoUrl" | "logoWidth" | "logoHeight" | "quote" | "author"> & {
   cardWidth: number;
 }) {
   return (
@@ -73,7 +26,7 @@ function Card({
       style={{ width: cardWidth }}
     >
       <img
-        src={logo}
+        src={logoUrl}
         alt=""
         aria-hidden="true"
         className="object-contain object-left"
@@ -87,7 +40,7 @@ function Card({
   );
 }
 
-export function TestimonialsSection() {
+export function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
   return (
     <section id="testimonials">
       {/* ── Desktop ── */}
@@ -102,7 +55,7 @@ export function TestimonialsSection() {
           </h2>
         </div>
 
-        {TESTIMONIALS.map((t) => (
+        {testimonials.map((t) => (
           <div
             key={t.author}
             className="absolute"
@@ -130,12 +83,17 @@ export function TestimonialsSection() {
         {/* Horizontal scroll strip — peeks second card */}
         <div className="-mx-4 overflow-x-auto">
           <div className="flex gap-4 px-4 py-10" style={{ width: "max-content" }}>
-            {TESTIMONIALS.map((t, i) => (
+            {testimonials.map((t, i) => (
               <div
                 key={t.author}
                 style={{ transform: `rotate(${i % 2 === 0 ? -3.5 : 2}deg)` }}
               >
-                <Card {...t} cardWidth={260} logoWidth={Math.round(t.logoWidth * 0.74)} logoHeight={Math.round(t.logoHeight * 0.74)} />
+                <Card
+                  {...t}
+                  cardWidth={260}
+                  logoWidth={Math.round(t.logoWidth * 0.74)}
+                  logoHeight={Math.round(t.logoHeight * 0.74)}
+                />
               </div>
             ))}
           </div>
