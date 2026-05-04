@@ -1,3 +1,5 @@
+import { MagneticButton } from "./MagneticButton";
+
 export type Project = {
   title: string;
   tags: string[];
@@ -52,10 +54,24 @@ function ProjectCard({
   imageClass: string;
 }) {
   return (
-    <div className="flex flex-col gap-[10px] w-full shrink-0">
+    <div className="group flex flex-col gap-[10px] w-full shrink-0 cursor-pointer">
       <div className={`relative flex items-end pb-4 pl-4 overflow-hidden ${imageClass}`}>
-        <img src={imageUrl} alt={title} className="absolute inset-0 w-full h-full object-cover" />
-        <div className="relative flex gap-3 flex-wrap">
+        {/* Image zooms on hover */}
+        <img
+          src={imageUrl}
+          alt={title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+        {/* Dark overlay fades in */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        {/* "View Project" slides up */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-100">
+          <span className="text-white font-medium text-[13px] tracking-[0.18em] uppercase">
+            View Project
+          </span>
+        </div>
+        {/* Tags fade out as overlay appears */}
+        <div className="relative flex gap-3 flex-wrap transition-opacity duration-300 group-hover:opacity-0">
           {tags.map((tag) => (
             <span
               key={tag}
@@ -70,7 +86,8 @@ function ProjectCard({
         <p className="font-black text-black uppercase leading-[1.1] text-[36px] tracking-[-0.04em] max-[989px]:text-[24px] max-[989px]:tracking-[-0.04em]">
           {title}
         </p>
-        <div className="size-8 shrink-0 flex items-center justify-center">
+        {/* Arrow nudges diagonally on hover */}
+        <div className="size-8 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
           <ArrowIcon />
         </div>
       </div>
@@ -93,9 +110,10 @@ function CtaBox({ className }: { className?: string }) {
           Discover how my creativity transforms ideas into impactful digital experiences — schedule
           a call with me to get started.
         </p>
-        <button className="bg-black text-white text-[14px] font-medium tracking-[-0.04em] px-4 py-3 rounded-full shrink-0">
-          Let&apos;s talk
-        </button>
+        <MagneticButton className="relative overflow-hidden group bg-black text-white text-[14px] font-medium tracking-[-0.04em] px-4 py-3 rounded-full shrink-0">
+          <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+          <span className="relative group-hover:text-black transition-colors duration-300">Let&apos;s talk</span>
+        </MagneticButton>
       </div>
 
       {/* Right brackets */}
@@ -111,7 +129,7 @@ export function PortfolioSection({ projects }: { projects: Project[] }) {
   const [p0, p1, p2, p3] = projects;
 
   return (
-    <section id="projects" className="px-8 py-[80px] max-[989px]:px-4 max-[989px]:py-12">
+    <section id="projects" className="bg-white px-8 py-[80px] max-[989px]:px-4 max-[989px]:py-12">
       <div className="flex flex-col gap-[61px] max-[989px]:gap-8">
 
         {/* ── Desktop header ── */}

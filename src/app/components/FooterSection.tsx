@@ -1,9 +1,11 @@
+import { MagneticButton } from "./MagneticButton";
+
 const SOCIAL_LINKS_LEFT = ["Facebook", "Instagram"];
 const SOCIAL_LINKS_RIGHT = ["x.com", "Linkedin"];
 
 export function FooterSection() {
   return (
-    <footer id="contact" className="bg-black text-white">
+    <footer id="contact" data-nav-theme="dark" data-footer-parallax-inner="" className="w-full bg-black text-white">
 
       {/* ── Desktop ── */}
       <div className="max-[989px]:hidden pt-[48px] px-8 flex flex-col gap-[120px]">
@@ -17,9 +19,10 @@ export function FooterSection() {
               <p className="font-light italic text-[24px] uppercase leading-[1.1]" style={{ letterSpacing: "-0.04em" }}>
                 Have a <span className="font-black not-italic">project</span> in mind?
               </p>
-              <button className="border border-white font-medium text-[14px] px-4 py-3 rounded-full w-fit" style={{ letterSpacing: "-0.04em" }}>
-                Let&apos;s talk
-              </button>
+              <MagneticButton className="relative overflow-hidden group border border-white font-medium text-[14px] px-4 py-3 rounded-full w-fit" style={{ letterSpacing: "-0.04em" }}>
+                <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+                <span className="relative z-10 text-white group-hover:text-black transition-colors duration-300">Let&apos;s talk</span>
+              </MagneticButton>
             </div>
 
             {/* Social — center */}
@@ -81,9 +84,10 @@ export function FooterSection() {
               <p className="font-light italic text-[24px] uppercase leading-[1.1]" style={{ letterSpacing: "-0.04em" }}>
                 Have a <span className="font-black not-italic">project</span> in mind?
               </p>
-              <button className="border border-white font-medium text-[14px] px-4 py-3 rounded-full w-fit" style={{ letterSpacing: "-0.04em" }}>
-                Let&apos;s talk
-              </button>
+              <MagneticButton className="relative overflow-hidden group border border-white font-medium text-[14px] px-4 py-3 rounded-full w-fit" style={{ letterSpacing: "-0.04em" }}>
+                <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+                <span className="relative z-10 text-white group-hover:text-black transition-colors duration-300">Let&apos;s talk</span>
+              </MagneticButton>
             </div>
 
             {[...SOCIAL_LINKS_LEFT, ...SOCIAL_LINKS_RIGHT].map((name) => (
