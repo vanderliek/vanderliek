@@ -2,15 +2,23 @@
 
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { MagneticButton } from "./MagneticButton";
 
-const NAV_LINKS = ["About", "Services", "Projects", "News", "Contact"] as const;
+const NAV_LINKS: { label: string; href: string }[] = [
+  { label: "About", href: "/about" },
+  { label: "Services", href: "#services" },
+  { label: "Projects", href: "#projects" },
+  { label: "News", href: "#news" },
+  { label: "Contact", href: "#contact" },
+];
 
 export function MobileNav({ dark = false }: { dark?: boolean }) {
   const [isVisible, setIsVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
@@ -60,16 +68,21 @@ export function MobileNav({ dark = false }: { dark?: boolean }) {
 
       {/* Nav links */}
       <nav className="flex-1 flex flex-col justify-center">
-        {NAV_LINKS.map((link) => (
-          <a
-            key={link}
-            href={`#${link.toLowerCase()}`}
-            className="font-light text-[52px] text-white capitalize leading-[1.15] border-b border-white/10 py-3 transition-[padding,opacity] duration-300 hover:pl-3 hover:opacity-60"
-            onClick={closeMenu}
-          >
-            {link}
-          </a>
-        ))}
+        {NAV_LINKS.map(({ label, href }) => {
+            const isActive = pathname === href;
+            return (
+              <a
+                key={label}
+                href={href}
+                className={`font-light text-[52px] text-white capitalize leading-[1.15] border-b border-white/10 py-3 transition-[padding,opacity] duration-300 hover:pl-3 hover:opacity-60 ${
+                  isActive ? "pl-3 opacity-60" : ""
+                }`}
+                onClick={closeMenu}
+              >
+                {label}
+              </a>
+            );
+          })}
       </nav>
 
       {/* CTA */}

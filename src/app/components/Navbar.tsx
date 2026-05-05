@@ -1,10 +1,17 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { MagneticButton } from "./MagneticButton";
 import { MobileNav } from "./MobileNav";
 
-const NAV_LINKS = ["About", "Services", "Projects", "News", "Contact"] as const;
+const NAV_LINKS: { label: string; href: string }[] = [
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "#projects" },
+  { label: "News", href: "#news" },
+  { label: "Contact", href: "#contact" },
+];
 
 // Navbar is ~80px tall — used as the midpoint for section-theme detection
 const NAVBAR_H = 80;
@@ -36,6 +43,7 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [dark, setDark] = useState(false); // hero is light → start black
   const lastScrollY = useRef(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     let rafId: number;
@@ -99,15 +107,20 @@ export function Navbar() {
       </a>
 
       <div className={`max-md:hidden flex items-center gap-14 font-semibold text-[16px] tracking-[-0.04em] capitalize transition-colors duration-300 ${textColor}`}>
-        {NAV_LINKS.map((link) => (
-          <a
-            key={link}
-            href={`#${link.toLowerCase()}`}
-            className={`relative after:absolute after:bottom-[-2px] after:left-0 after:h-[1.5px] after:w-0 after:transition-[width] after:duration-300 hover:after:w-full ${underlineColor}`}
-          >
-            {link}
-          </a>
-        ))}
+        {NAV_LINKS.map(({ label, href }) => {
+            const isActive = pathname === href;
+            return (
+              <a
+                key={label}
+                href={href}
+                className={`relative after:absolute after:bottom-[-2px] after:left-0 after:h-[1.5px] after:transition-[width] after:duration-300 hover:after:w-full ${underlineColor} ${
+                  isActive ? "after:w-full" : "after:w-0"
+                }`}
+              >
+                {label}
+              </a>
+            );
+          })}
       </div>
 
       <TalkButton dark={dark} className="max-md:hidden" />

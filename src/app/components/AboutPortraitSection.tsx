@@ -114,10 +114,11 @@ export function AboutPortraitSection() {
                 src="/about/portrait.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
+                style={{ transform: "scaleX(-1)" }}
               />
               <div
                 ref={desktopOverlayRef}
-                className="absolute top-[3px] right-[3px] bottom-[4px] left-[3px] bg-black"
+                className="absolute inset-0 bg-black"
               />
             </div>
           </div>
@@ -140,10 +141,11 @@ export function AboutPortraitSection() {
             src="/about/portrait.jpg"
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: "scaleX(-1)" }}
           />
           <div
             ref={mobileOverlayRef}
-            className="absolute top-[3px] right-[3px] bottom-[4px] left-[3px] bg-black"
+            className="absolute inset-0 bg-black"
           />
         </div>
       </div>
