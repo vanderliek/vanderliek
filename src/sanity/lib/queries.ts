@@ -12,6 +12,13 @@ export const projectsQuery = groq`*[_type == "project"] | order(order asc) {
   tallCard
 }`;
 
+export const servicesQuery = groq`*[_type == "service"] | order(order asc) {
+  title,
+  description,
+  "imageUrl": image.asset->url,
+  order
+}`;
+
 export const testimonialsQuery = groq`*[_type == "testimonial"] | order(order asc) {
   "logoUrl": logo.asset->url,
   logoWidth,
