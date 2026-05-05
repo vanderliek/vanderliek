@@ -8,9 +8,9 @@ import { MobileNav } from "./MobileNav";
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Projects", href: "#projects" },
-  { label: "News", href: "#news" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects", href: "/projects" },
+  { label: "News", href: "/news" },
+  { label: "Contact", href: "/contact" },
 ];
 
 // Navbar is ~80px tall — used as the midpoint for section-theme detection

@@ -5,6 +5,16 @@ export const newsItemsQuery = groq`*[_type == "newsItem"] | order(order asc) {
   description
 }`;
 
+export const newsPageQuery = groq`*[_type == "newsItem"] | order(order asc) {
+  _id,
+  title,
+  category,
+  publishedAt,
+  "imageUrl": image.asset->url,
+  description,
+  link
+}`;
+
 export const projectsQuery = groq`*[_type == "project"] | order(order asc) {
   title,
   tags,
