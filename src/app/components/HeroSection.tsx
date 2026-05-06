@@ -85,7 +85,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section ref={heroRef} data-nav-theme="light" className="relative h-screen overflow-hidden flex flex-col bg-neutral-300">
+    <section ref={heroRef} data-nav-theme="light" className="relative h-screen overflow-hidden flex flex-col bg-neutral-300 [transform:translateZ(0)]">
       <img
         ref={bgRef}
         src="/hero.jpg"
