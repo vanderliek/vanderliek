@@ -52,7 +52,7 @@ export function DraggableTestimonialsDesktop({ testimonials }: { testimonials: T
       if (!el) return;
       const x = Math.random() * Math.max(0, cW - CARD_W);
       const y = Math.random() * Math.max(0, cH - CARD_H);
-      gsap.set(el, { x, y, rotation: testimonials[i]?.rotate ?? 0, opacity: 0 });
+      gsap.set(el, { left: 0, top: 0, x, y, rotation: testimonials[i]?.rotate ?? 0, opacity: 0 });
     });
     gsap.to(cardRefs.current.filter(Boolean), { opacity: 1, duration: 0.3, stagger: 0.06 });
 
@@ -108,8 +108,9 @@ export function DraggableTestimonialsDesktop({ testimonials }: { testimonials: T
           className="absolute"
           // left/top are SSR placeholders; GSAP overwrites x/y on mount
           style={{
-            left: t.desktopLeft,
-            top: t.desktopTop,
+            left: 0,
+            top: 0,
+            opacity: 0,
             zIndex: i + 20, // all cards > heading z-index (5)
           }}
         >
