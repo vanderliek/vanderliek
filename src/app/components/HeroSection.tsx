@@ -41,6 +41,7 @@ export function HeroSection() {
   const mHelloRef = useRef<HTMLSpanElement>(null);
   const mHarveyRef = useRef<HTMLSpanElement>(null);
   const mSpecterRef = useRef<HTMLSpanElement>(null);
+  const mH1Ref = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -50,10 +51,22 @@ export function HeroSection() {
     if (!hero || !bg) return;
 
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    const initialScale = isMobile ? 1 : 1.3;
+    // Mobile starts at 1.2 (like desktop's 1.3) so the saturated jacket shadows
+    // are under the text from page load — at scale 1 the jacket highlights are too
+    // bright for overlay-on-white to produce anything other than white.
+    const initialScale = isMobile ? 1.2 : 1.3;
 
     // Set initial bg scale via GSAP (replaces Tailwind scale classes)
-    gsap.set(bg, { scale: initialScale, transformOrigin: isMobile ? "40% 50%" : "40% 20%" });
+    gsap.set(bg, { scale: initialScale, transformOrigin: isMobile ? "40% 30%" : "40% 20%" });
+
+    // Force GPU compositing on every element that carries mix-blend-overlay.
+    // Without this, mobile browsers composite blend-mode elements against a white
+    // backing layer until a GSAP scroll transform promotes them — causing solid
+    // white text until the user scrolls.
+    gsap.set(
+      [mHelloRef.current, mH1Ref.current, mHarveyRef.current, mSpecterRef.current].filter(Boolean),
+      { x: 0, force3D: true }
+    );
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -135,6 +148,7 @@ export function HeroSection() {
             [ Hello i&apos;m ]
           </span>
           <h1
+            ref={mH1Ref}
             className="relative font-medium text-white mix-blend-overlay text-center capitalize leading-[0.9] w-full mb-8"
             style={{ fontSize: "clamp(64px, 25.6vw, 96px)", letterSpacing: "-0.07em" }}
           >
