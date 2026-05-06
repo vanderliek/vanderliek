@@ -56,8 +56,8 @@ export function PhotoSection({ showVideo = false }: { showVideo?: boolean }) {
           src="/photo-section.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-x-0 w-full object-cover pointer-events-none object-[50%_20%] md:object-[50%_25%]"
-          style={{ height: "140%", top: "-20%" }}
+          className="absolute inset-x-0 w-full object-cover pointer-events-none object-[50%_0%]"
+          style={{ height: "120%", top: "0%" }}
         />
       )}
     </section>

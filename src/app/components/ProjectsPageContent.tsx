@@ -76,7 +76,7 @@ function ProjectCard({
         </div>
       </div>
       <div className="flex items-center justify-between w-full">
-        <p className="font-black text-black uppercase leading-[1.1] text-[36px] tracking-[-0.04em] max-[989px]:text-[24px] max-[989px]:tracking-[-0.04em]">
+        <p className="font-black text-black uppercase leading-[1.1] text-[26px] tracking-[-0.04em] max-[989px]:text-[24px] max-[989px]:tracking-[-0.04em]">
           {title}
         </p>
         <div className="size-8 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -122,8 +122,9 @@ export function ProjectsPageContent({ projects }: { projects: Project[] }) {
     ? projects.filter((p) => p.tags.includes(activeTag))
     : projects;
 
-  const leftCol = filtered.filter((_, i) => i % 2 === 0);
-  const rightCol = filtered.filter((_, i) => i % 2 === 1);
+  const col0 = filtered.filter((_, i) => i % 3 === 0);
+  const col1 = filtered.filter((_, i) => i % 3 === 1);
+  const col2 = filtered.filter((_, i) => i % 3 === 2);
 
   return (
     <section data-nav-theme="light" className="bg-white px-8 pb-[80px] max-[989px]:px-4 max-[989px]:pb-12">
@@ -156,23 +157,32 @@ export function ProjectsPageContent({ projects }: { projects: Project[] }) {
         </div>
       )}
 
-      {/* Desktop 2-column staggered grid */}
-      <div className="max-[989px]:hidden flex gap-6 w-full">
-        <div className="flex-1 flex flex-col gap-6 min-w-0">
-          {leftCol.map((p) => (
+      {/* Desktop 3-column staggered grid */}
+      <div className="max-[989px]:hidden flex gap-5 w-full">
+        <div className="flex-1 flex flex-col gap-5 min-w-0">
+          {col0.map((p) => (
             <ProjectCard
               key={p.title}
               {...p}
-              imageClass={p.tallCard ? "h-[744px]" : "h-[699px]"}
+              imageClass={p.tallCard ? "h-[520px]" : "h-[460px]"}
             />
           ))}
         </div>
-        <div className="flex-1 flex flex-col gap-6 pt-[240px] min-w-0">
-          {rightCol.map((p) => (
+        <div className="flex-1 flex flex-col gap-5 pt-[160px] min-w-0">
+          {col1.map((p) => (
             <ProjectCard
               key={p.title}
               {...p}
-              imageClass={p.tallCard ? "h-[744px]" : "h-[699px]"}
+              imageClass={p.tallCard ? "h-[520px]" : "h-[460px]"}
+            />
+          ))}
+        </div>
+        <div className="flex-1 flex flex-col gap-5 pt-[80px] min-w-0">
+          {col2.map((p) => (
+            <ProjectCard
+              key={p.title}
+              {...p}
+              imageClass={p.tallCard ? "h-[520px]" : "h-[460px]"}
             />
           ))}
         </div>

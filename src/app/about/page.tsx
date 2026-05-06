@@ -1,15 +1,12 @@
 import { Navbar } from "../components/Navbar";
-import { AboutPageIntro } from "../components/AboutPageIntro";
-import { AboutCombinedV3 } from "../components/AboutCombinedV3";
+import { AboutBioV3C } from "../components/AboutBioVariations";
+import { AboutHeroD } from "../components/AboutHeroVariations2";
 import { PhotoSection } from "../components/PhotoSection";
-import { ServicesSection } from "../components/ServicesSection";
-import { TestimonialsSection } from "../components/TestimonialsSection";
+import { WorkApproachC } from "../components/AboutWorkApproachVariations";
+import { SkillsA } from "../components/AboutSkillsVariations";
 import { FooterSection } from "../components/FooterSection";
 import { FooterParallaxWrapper } from "../components/FooterParallaxWrapper";
-import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { servicesQuery, testimonialsQuery } from "@/sanity/lib/queries";
-import type { Service } from "../components/ServicesSection";
-import type { Testimonial } from "../components/TestimonialsSection";
+import { SanityLive } from "@/sanity/lib/live";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,20 +14,15 @@ export const metadata: Metadata = {
   description: "Creative director, photographer and designer — the story behind the work.",
 };
 
-export default async function AboutPage() {
-  const [{ data: services }, { data: testimonials }] = await Promise.all([
-    sanityFetch({ query: servicesQuery }),
-    sanityFetch({ query: testimonialsQuery }),
-  ]) as [{ data: Service[] }, { data: Testimonial[] }];
-
+export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <AboutPageIntro />
-      <AboutCombinedV3 />
+      <AboutHeroD />
+      <AboutBioV3C />
       <PhotoSection />
-      <ServicesSection services={services} />
-      <TestimonialsSection testimonials={testimonials} />
+      <WorkApproachC />
+      <SkillsA />
       <FooterParallaxWrapper>
         <FooterSection />
       </FooterParallaxWrapper>

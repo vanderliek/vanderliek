@@ -51,10 +51,10 @@ function ContactIntro() {
     const allChars = splits.flatMap(s => s.chars as HTMLElement[]);
 
     const ctx = gsap.context(() => {
-      gsap.set(allChars, { color: "rgba(255,255,255,0.15)" });
+      gsap.set(allChars, { color: "rgba(31,31,31,0.15)" });
       gsap.timeline({
         scrollTrigger: { trigger: section, start: "top 80%", end: "center 35%", scrub: 1 },
-      }).to(allChars, { color: "#ffffff", ease: "none", stagger: 0.04 });
+      }).to(allChars, { color: "#1f1f1f", ease: "none", stagger: 0.04 });
     }, section);
 
     return () => {
@@ -64,36 +64,36 @@ function ContactIntro() {
   }, []);
 
   return (
-    <section ref={sectionRef} data-nav-theme="dark" className="bg-black overflow-hidden">
-      <div className="px-8 py-[140px] max-md:px-4 max-md:py-20">
+    <section ref={sectionRef} data-nav-theme="light" className="bg-white overflow-hidden">
+      <div className="px-8 pt-[220px] pb-[140px] max-md:px-4 max-md:pt-36 max-md:pb-20">
 
         {/* Label + divider */}
         <div className="flex flex-col gap-3 mb-6">
-          <p className="font-mono text-[14px] text-white/60 uppercase leading-[1.1] text-right">
+          <p className="font-mono text-[14px] text-[#1f1f1f]/60 uppercase leading-[1.1] text-right">
             [ contact ]
           </p>
-          <hr className="border-t border-white/20 m-0" />
+          <hr className="border-t border-[#1f1f1f]/20 m-0" />
         </div>
 
         {/* Desktop */}
         <div className="max-md:hidden flex flex-col gap-2 uppercase">
           <div className="flex items-start gap-3">
-            <span ref={d1} className="font-light text-white whitespace-nowrap not-italic" style={HEADING_STYLE}>
+            <span ref={d1} className="font-light text-[#1f1f1f] whitespace-nowrap not-italic" style={HEADING_STYLE}>
               Let&apos;s build
             </span>
-            <span className="font-mono text-[14px] text-white/40 leading-[1.1] mt-1">001</span>
+            <span className="font-mono text-[14px] text-[#1f1f1f]/40 leading-[1.1] mt-1">001</span>
           </div>
           <div style={{ paddingLeft: "22vw" }}>
-            <span ref={d2} className="font-light text-white whitespace-nowrap not-italic" style={HEADING_STYLE}>
+            <span ref={d2} className="font-light text-[#1f1f1f] whitespace-nowrap not-italic" style={HEADING_STYLE}>
               something
             </span>
           </div>
           <div style={{ paddingLeft: "44vw" }}>
-            <span ref={d3} className="font-light text-white whitespace-nowrap not-italic" style={HEADING_STYLE}>
+            <span ref={d3} className="font-light text-[#1f1f1f] whitespace-nowrap not-italic" style={HEADING_STYLE}>
               <ItalicWord>great.</ItalicWord>
             </span>
           </div>
-          <p className="font-mono text-[14px] text-white/40 uppercase leading-[1.1] text-right mt-2">
+          <p className="font-mono text-[14px] text-[#1f1f1f]/40 uppercase leading-[1.1] text-right mt-2">
             [ reach out ]
           </p>
         </div>
@@ -101,19 +101,19 @@ function ContactIntro() {
         {/* Mobile */}
         <div className="md:hidden flex flex-col items-center gap-2 uppercase text-center">
           <div className="flex flex-col items-center gap-3">
-            <span className="font-mono text-[14px] text-white/40 leading-[1.1]">001</span>
-            <span ref={m1} className="font-light text-white whitespace-nowrap not-italic" style={MOBILE_HEADING_STYLE}>
+            <span className="font-mono text-[14px] text-[#1f1f1f]/40 leading-[1.1]">001</span>
+            <span ref={m1} className="font-light text-[#1f1f1f] whitespace-nowrap not-italic" style={MOBILE_HEADING_STYLE}>
               Let&apos;s build
             </span>
           </div>
-          <span ref={m2} className="font-light text-white whitespace-nowrap not-italic" style={MOBILE_HEADING_STYLE}>
+          <span ref={m2} className="font-light text-[#1f1f1f] whitespace-nowrap not-italic" style={MOBILE_HEADING_STYLE}>
             something
           </span>
           <div className="flex flex-col items-center gap-3">
-            <span ref={m3} className="font-light text-white whitespace-nowrap not-italic" style={MOBILE_HEADING_STYLE}>
+            <span ref={m3} className="font-light text-[#1f1f1f] whitespace-nowrap not-italic" style={MOBILE_HEADING_STYLE}>
               <ItalicWord>great.</ItalicWord>
             </span>
-            <span className="font-mono text-[14px] text-white/40 leading-[1.1]">[ reach out ]</span>
+            <span className="font-mono text-[14px] text-[#1f1f1f]/40 leading-[1.1]">[ reach out ]</span>
           </div>
         </div>
 
