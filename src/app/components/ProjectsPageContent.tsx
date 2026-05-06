@@ -41,17 +41,22 @@ function CornerSvg({ className }: { className?: string }) {
 
 function ProjectCard({
   title,
+  slug,
   tags,
   imageUrl,
   imageClass,
 }: {
   title: string;
+  slug?: string;
   tags: string[];
   imageUrl: string;
   imageClass: string;
 }) {
+  const Tag = slug ? "a" : "div";
   return (
-    <div className="group flex flex-col gap-[10px] w-full shrink-0 cursor-pointer">
+    <Tag
+      {...(slug ? { href: `/projects/${slug}` } : {})}
+      className="group flex flex-col gap-[10px] w-full shrink-0 cursor-pointer">
       <div className={`relative flex items-end pb-4 pl-4 overflow-hidden ${imageClass}`}>
         <img
           src={imageUrl}
@@ -83,7 +88,7 @@ function ProjectCard({
           <ArrowIcon />
         </div>
       </div>
-    </div>
+    </Tag>
   );
 }
 

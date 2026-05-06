@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { MagneticButton } from "./MagneticButton";
+import { useTalkModal } from "./TalkModal";
 
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: "About", href: "/about" },
@@ -19,6 +20,7 @@ export function MobileNav({ dark = false }: { dark?: boolean }) {
   const [mounted, setMounted] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const openTalkModal = useTalkModal();
 
   useEffect(() => {
     setMounted(true);
@@ -88,7 +90,7 @@ export function MobileNav({ dark = false }: { dark?: boolean }) {
       {/* CTA */}
       <MagneticButton
         className="self-start mt-8 relative overflow-hidden group border border-white font-medium text-[14px] tracking-[-0.04em] px-4 py-3 rounded-full shrink-0"
-        onClick={closeMenu}
+        onClick={() => { closeMenu(); setTimeout(openTalkModal, 450); }}
       >
         <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
         <span className="relative z-10 text-white group-hover:text-black transition-colors duration-300">Let&apos;s talk</span>

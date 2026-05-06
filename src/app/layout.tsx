@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { TalkModalProvider } from "./components/TalkModal";
 
 const inter = Inter({
   variable: "--font-inter-var",
@@ -34,7 +35,9 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        <TalkModalProvider>{children}</TalkModalProvider>
+      </body>
     </html>
   );
 }

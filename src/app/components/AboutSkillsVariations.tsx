@@ -264,7 +264,7 @@ function MobileSkillsSlider({
 function CardA({ skill }: { skill: Skill }) {
   return (
     <div
-      className="rounded-[4px] p-6 flex flex-col gap-4 pointer-events-none select-none"
+      className="rounded-[4px] p-6 flex flex-col gap-4 pointer-events-none select-none border border-black/30"
       style={{ width: CARD_W, backgroundColor: ORANGE }}
     >
       <span className="font-mono text-[11px] uppercase font-bold text-black/70">

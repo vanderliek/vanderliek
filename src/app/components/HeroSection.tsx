@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MagneticButton } from "./MagneticButton";
+import { useTalkModal } from "./TalkModal";
 
 function DescriptionText({ className }: { className?: string }) {
   return (
@@ -18,8 +19,9 @@ function DescriptionText({ className }: { className?: string }) {
 }
 
 function TalkButton({ className }: { className?: string }) {
+  const openModal = useTalkModal();
   return (
-    <MagneticButton className={`relative overflow-hidden group bg-black text-white font-medium text-[14px] tracking-[-0.56px] px-4 py-3 rounded-full ${className ?? ""}`}>
+    <MagneticButton onClick={openModal} className={`relative overflow-hidden group bg-black text-white font-medium text-[14px] tracking-[-0.56px] px-4 py-3 rounded-full ${className ?? ""}`}>
       <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
       <span className="relative group-hover:text-black transition-colors duration-300">Let&apos;s talk</span>
     </MagneticButton>

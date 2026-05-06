@@ -1,9 +1,28 @@
+"use client";
+
 import { MagneticButton } from "./MagneticButton";
+import { useTalkModal } from "./TalkModal";
 
 export type Project = {
   title: string;
+  slug?: string;
   tags: string[];
   imageUrl: string;
+  tallCard: boolean;
+};
+
+export type ProjectDetail = {
+  title: string;
+  slug: string;
+  tags: string[];
+  imageUrl: string;
+  summary?: string;
+  description?: string;
+  client?: string;
+  year?: string;
+  services?: string[];
+  gallery?: string[];
+  link?: string;
   tallCard: boolean;
 };
 
@@ -44,17 +63,22 @@ function CornerSvg({ className }: { className?: string }) {
 
 function ProjectCard({
   title,
+  slug,
   tags,
   imageUrl,
   imageClass,
 }: {
   title: string;
+  slug?: string;
   tags: string[];
   imageUrl: string;
   imageClass: string;
 }) {
+  const Tag = slug ? "a" : "div";
   return (
-    <div className="group flex flex-col gap-[10px] w-full shrink-0 cursor-pointer">
+    <Tag
+      {...(slug ? { href: `/projects/${slug}` } : {})}
+      className="group flex flex-col gap-[10px] w-full shrink-0 cursor-pointer">
       <div className={`relative flex items-end pb-4 pl-4 overflow-hidden ${imageClass}`}>
         {/* Image zooms on hover */}
         <img
@@ -91,11 +115,12 @@ function ProjectCard({
           <ArrowIcon />
         </div>
       </div>
-    </div>
+    </Tag>
   );
 }
 
 function CtaBox({ className }: { className?: string }) {
+  const openModal = useTalkModal();
   return (
     <div className={`flex gap-3 items-center ${className ?? ""}`}>
       {/* Left brackets */}
@@ -110,7 +135,7 @@ function CtaBox({ className }: { className?: string }) {
           Discover how my creativity transforms ideas into impactful digital experiences — schedule
           a call with me to get started.
         </p>
-        <MagneticButton className="relative overflow-hidden group bg-black text-white text-[14px] font-medium tracking-[-0.04em] px-4 py-3 rounded-full shrink-0">
+        <MagneticButton onClick={openModal} className="relative overflow-hidden group bg-black text-white text-[14px] font-medium tracking-[-0.04em] px-4 py-3 rounded-full shrink-0">
           <span className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
           <span className="relative group-hover:text-black transition-colors duration-300">Let&apos;s talk</span>
         </MagneticButton>

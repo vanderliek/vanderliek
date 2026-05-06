@@ -1,12 +1,11 @@
 import { Navbar } from "../components/Navbar";
 import { ServicesSection } from "../components/ServicesSection";
-import { TestimonialsSection } from "../components/TestimonialsSection";
+import { FaqVariationB } from "../components/FaqSectionVariations";
 import { FooterSection } from "../components/FooterSection";
 import { FooterParallaxWrapper } from "../components/FooterParallaxWrapper";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { servicesQuery, testimonialsQuery } from "@/sanity/lib/queries";
+import { servicesQuery } from "@/sanity/lib/queries";
 import type { Service } from "../components/ServicesSection";
-import type { Testimonial } from "../components/TestimonialsSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,10 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ServicesPage() {
-  const [{ data: services }, { data: testimonials }] = await Promise.all([
-    sanityFetch({ query: servicesQuery }),
-    sanityFetch({ query: testimonialsQuery }),
-  ]) as [{ data: Service[] }, { data: Testimonial[] }];
+  const { data: services } = await sanityFetch({ query: servicesQuery }) as { data: Service[] };
 
   return (
     <>
@@ -37,8 +33,8 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <ServicesSection services={services} />
-      <TestimonialsSection testimonials={testimonials} />
+      <ServicesSection services={services} light />
+      <FaqVariationB />
       <FooterParallaxWrapper>
         <FooterSection />
       </FooterParallaxWrapper>

@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { MagneticButton } from "./MagneticButton";
 import { MobileNav } from "./MobileNav";
+import { useTalkModal } from "./TalkModal";
 
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: "About", href: "/about" },
@@ -17,8 +18,10 @@ const NAV_LINKS: { label: string; href: string }[] = [
 const NAVBAR_H = 80;
 
 function TalkButton({ dark, className }: { dark: boolean; className?: string }) {
+  const openModal = useTalkModal();
   return (
     <MagneticButton
+      onClick={openModal}
       className={`relative overflow-hidden group font-medium text-[14px] tracking-[-0.56px] px-4 py-3 rounded-full transition-colors duration-300 ${
         dark ? "bg-white text-black" : "bg-black text-white"
       } ${className ?? ""}`}

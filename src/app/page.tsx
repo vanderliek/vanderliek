@@ -2,7 +2,7 @@ import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
 import { AboutSection } from "./components/AboutSection";
 import { AboutPortraitSection } from "./components/AboutPortraitSection";
-import { PhotoSection } from "./components/PhotoSection";
+import { PhotoSectionVideoD } from "./components/PhotoSectionVariations";
 import { ServicesSection } from "./components/ServicesSection";
 import { PortfolioSection } from "./components/PortfolioSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
@@ -29,7 +29,7 @@ export default async function Home() {
     <HeroSection />
     <AboutSection />
     <AboutPortraitSection />
-    <PhotoSection showVideo />
+    <PhotoSectionVideoD />
     <ServicesSection services={services} />
     <PortfolioSection projects={projects} />
     <TestimonialsSection testimonials={testimonials} />

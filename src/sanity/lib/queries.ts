@@ -8,6 +8,17 @@ export const newsItemsQuery = groq`*[_type == "newsItem"] | order(order asc) {
 export const newsPageQuery = groq`*[_type == "newsItem"] | order(order asc) {
   _id,
   title,
+  "slug": slug.current,
+  category,
+  publishedAt,
+  "imageUrl": image.asset->url,
+  description,
+  link
+}`;
+
+export const newsBySlugQuery = groq`*[_type == "newsItem" && slug.current == $slug][0] {
+  title,
+  "slug": slug.current,
   category,
   publishedAt,
   "imageUrl": image.asset->url,
@@ -17,8 +28,24 @@ export const newsPageQuery = groq`*[_type == "newsItem"] | order(order asc) {
 
 export const projectsQuery = groq`*[_type == "project"] | order(order asc) {
   title,
+  "slug": slug.current,
   tags,
   "imageUrl": image.asset->url,
+  tallCard
+}`;
+
+export const projectBySlugQuery = groq`*[_type == "project" && slug.current == $slug][0] {
+  title,
+  "slug": slug.current,
+  tags,
+  "imageUrl": image.asset->url,
+  summary,
+  description,
+  client,
+  year,
+  services,
+  "gallery": gallery[].asset->url,
+  link,
   tallCard
 }`;
 

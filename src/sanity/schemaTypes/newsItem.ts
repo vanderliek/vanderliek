@@ -6,6 +6,12 @@ export const newsItemType = defineType({
   type: "document",
   fields: [
     defineField({ name: "title", title: "Title", type: "string" }),
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: { source: "title", maxLength: 96 },
+    }),
     defineField({ name: "category", title: "Category", type: "string", description: "e.g. Award, Press, Feature, Publication" }),
     defineField({ name: "publishedAt", title: "Published At", type: "datetime" }),
     defineField({ name: "image", title: "Image", type: "image" }),

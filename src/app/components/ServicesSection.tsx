@@ -5,19 +5,25 @@ export type Service = {
   order: number;
 };
 
-export function ServicesSection({ services }: { services: Service[] }) {
+export function ServicesSection({ services, light }: { services: Service[]; light?: boolean }) {
+  const sectionBg = light ? "bg-[#f2f2f2]" : "bg-black";
+  const navTheme = light ? "light" : "dark";
+  const textColor = light ? "text-black" : "text-white";
+  const dividerBg = light ? "bg-black/20" : "bg-white/20";
+  const dividerFill = light ? "bg-black" : "bg-white";
+
   return (
-    <section id="services" data-nav-theme="dark" className="bg-black px-8 py-[80px] max-[989px]:px-4 max-[989px]:py-12">
+    <section id="services" data-nav-theme={navTheme} className={`${sectionBg} px-8 py-[80px] max-[989px]:px-4 max-[989px]:py-12`}>
       <div className="flex flex-col gap-12 max-[989px]:gap-8">
 
         {/* Label */}
-        <p className="font-mono text-[14px] text-white uppercase leading-[1.1]">
+        <p className={`font-mono text-[14px] ${textColor} uppercase leading-[1.1]`}>
           [ services ]
         </p>
 
         {/* Count + title heading */}
         <div
-          className="flex items-baseline justify-between uppercase text-white font-light leading-none"
+          className={`flex items-baseline justify-between uppercase ${textColor} font-light leading-none`}
           style={{ letterSpacing: "-0.08em" }}
         >
           <span className="min-[990px]:text-[96px] text-[32px]">[{services.length}]</span>
@@ -27,27 +33,27 @@ export function ServicesSection({ services }: { services: Service[] }) {
         {/* Services list */}
         <div className="flex flex-col gap-12">
           {services.map((service, index) => (
-            <div key={service.title} className="group flex flex-col gap-[9px] max-[989px]:gap-3 cursor-pointer -mx-8 px-8 py-3 max-[989px]:-mx-4 max-[989px]:px-4">
+            <div key={service.title} className="group flex flex-col gap-[9px] max-[989px]:gap-3 -mx-8 px-8 py-3 max-[989px]:-mx-4 max-[989px]:px-4">
 
               {/* Number + divider */}
-              <p className="font-mono text-[14px] text-white uppercase leading-[1.1]">
+              <p className={`font-mono text-[14px] ${textColor} uppercase leading-[1.1]`}>
                 [ {index + 1} ]
               </p>
-              <div className="relative h-px bg-white/20 overflow-hidden">
-                <div className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+              <div className={`relative h-px ${dividerBg} overflow-hidden`}>
+                <div className={`absolute inset-0 ${dividerFill} -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out`} />
               </div>
 
               {/* Desktop: title left, desc+image right
                   Mobile: title → description → image stacked */}
               <div className="flex items-start justify-between gap-6 pt-[9px] max-[989px]:flex-col max-[989px]:gap-4 max-[989px]:pt-0">
                 <p
-                  className="font-bold italic text-white uppercase leading-[1.1] shrink-0 text-[36px] transition-transform duration-300 group-hover:translate-x-2"
+                  className={`font-bold italic ${textColor} uppercase leading-[1.1] shrink-0 text-[36px] transition-transform duration-300 group-hover:translate-x-2`}
                   style={{ letterSpacing: "-0.04em" }}
                 >
                   {service.title}
                 </p>
                 <div className="flex items-start gap-6 max-[989px]:flex-col max-[989px]:gap-4 max-[989px]:w-full">
-                  <p className="text-[14px] text-white leading-[1.3] tracking-[-0.04em] w-[393px] max-[989px]:w-full">
+                  <p className={`text-[14px] ${textColor} leading-[1.3] tracking-[-0.04em] w-[393px] max-[989px]:w-full`}>
                     {service.description}
                   </p>
                   {service.imageUrl && (

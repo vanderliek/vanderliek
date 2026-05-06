@@ -21,7 +21,7 @@ export default function AboutPage() {
       <AboutHeroD />
       <AboutBioV3C />
       <PhotoSection />
-      <WorkApproachC />
+      <WorkApproachC light />
       <SkillsA />
       <FooterParallaxWrapper>
         <FooterSection />

@@ -159,21 +159,45 @@ export function WorkApproachB() {
 
 // ─── Variation C: Large Number / Sparse Type ─────────────────────────────────
 
-export function WorkApproachC() {
+export function WorkApproachC({ light = false }: { light?: boolean }) {
+  const t = light
+    ? {
+        section: "bg-white",
+        navTheme: "light" as const,
+        label: "text-black",
+        subtitle: "text-black/40",
+        border: "border-black/10",
+        borderHover: "hover:border-black/30",
+        number: "text-black/10 group-hover:text-black/20",
+        phase: "text-black",
+        phaseLabel: "text-black/30",
+        desc: "text-black/60",
+      }
+    : {
+        section: "bg-black",
+        navTheme: "dark" as const,
+        label: "text-white",
+        subtitle: "text-white/40",
+        border: "border-white/10",
+        borderHover: "hover:border-white/30",
+        number: "text-white/10 group-hover:text-white/20",
+        phase: "text-white",
+        phaseLabel: "text-white/30",
+        desc: "text-white/60",
+      };
+
   return (
     <section
       id="work-approach"
-      data-nav-theme="dark"
-      className="bg-black px-8 py-[80px] max-[989px]:px-4 max-[989px]:py-12"
+      data-nav-theme={t.navTheme}
+      className={`${t.section} px-8 py-[80px] max-[989px]:px-4 max-[989px]:py-12`}
     >
       <div className="flex flex-col gap-20 max-[989px]:gap-14">
         <div className="flex flex-col gap-3">
-          <p className="font-mono text-[14px] text-white uppercase leading-[1.1]">
+          <p className={`font-mono text-[14px] ${t.label} uppercase leading-[1.1]`}>
             [ work approach ]
           </p>
-          <p
-            className="min-[990px]:text-[13px] text-[13px] text-white/40 leading-[1.4] tracking-[-0.02em] max-w-[480px]"
-          >
+          <p className={`text-[13px] ${t.subtitle} leading-[1.4] tracking-[-0.02em] max-w-[480px]`}>
             A repeatable process built around clarity, honesty, and craft. No
             guessing. No bloat. Just work that moves.
           </p>
@@ -183,13 +207,13 @@ export function WorkApproachC() {
           {steps.map((step, i) => (
             <div
               key={step.number}
-              className={`group grid min-[990px]:grid-cols-[1fr_2fr_2fr] grid-cols-1 gap-6 py-10 border-t border-white/10 ${
-                i === steps.length - 1 ? "border-b" : ""
-              } hover:border-white/30 transition-colors duration-300`}
+              className={`group grid min-[990px]:grid-cols-[1fr_2fr_2fr] grid-cols-1 gap-6 py-10 border-t ${t.border} ${
+                i === steps.length - 1 ? `border-b ${t.border}` : ""
+              } ${t.borderHover} transition-colors duration-300`}
             >
               {/* Giant number */}
               <div
-                className="font-light text-white/10 group-hover:text-white/20 transition-colors duration-500 leading-none select-none min-[990px]:text-[120px] text-[64px]"
+                className={`font-light ${t.number} transition-colors duration-500 leading-none select-none min-[990px]:text-[120px] text-[64px]`}
                 style={{ letterSpacing: "-0.08em" }}
               >
                 {step.number}
@@ -198,19 +222,19 @@ export function WorkApproachC() {
               {/* Phase */}
               <div className="flex flex-col justify-center gap-1">
                 <p
-                  className="font-bold italic text-white uppercase text-[36px] leading-[1] group-hover:translate-x-2 transition-transform duration-300"
+                  className={`font-bold italic ${t.phase} uppercase text-[36px] leading-[1] group-hover:translate-x-2 transition-transform duration-300`}
                   style={{ letterSpacing: "-0.04em" }}
                 >
                   {step.phase}
                 </p>
-                <p className="font-mono text-[11px] text-white/30 uppercase tracking-widest">
+                <p className={`font-mono text-[11px] ${t.phaseLabel} uppercase tracking-widest`}>
                   — {step.title}
                 </p>
               </div>
 
               {/* Description */}
               <div className="flex items-center">
-                <p className="text-[14px] text-white/60 leading-[1.4] tracking-[-0.03em]">
+                <p className={`text-[14px] ${t.desc} leading-[1.4] tracking-[-0.03em]`}>
                   {step.description}
                 </p>
               </div>

@@ -3,6 +3,7 @@
 export type NewsPageItem = {
   _id: string;
   title?: string;
+  slug?: string;
   category?: string;
   publishedAt?: string;
   imageUrl: string;
@@ -79,6 +80,13 @@ function NewsCard({ item }: { item: NewsPageItem }) {
   if (item.link) {
     return (
       <a href={item.link} target="_blank" rel="noopener noreferrer" className="block">
+        {inner}
+      </a>
+    );
+  }
+  if (item.slug) {
+    return (
+      <a href={`/news/${item.slug}`} className="block">
         {inner}
       </a>
     );

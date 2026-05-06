@@ -5,3 +5,12 @@
   --font-inter: var(--font-inter-var);
   --font-mono: var(--font-geist-mono);
 }
+
+@layer components {
+  .input-field {
+    @apply w-full border-b border-[#1f1f1f]/20 pb-3 text-[15px] bg-transparent outline-none placeholder:text-[#1f1f1f]/30 transition-colors duration-200 tracking-[-0.02em];
+    &:focus {
+      @apply border-[#1f1f1f];
+    }
+  }
+}
