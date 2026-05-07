@@ -1,10 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
+import Link from "next/link";
 
 export type NewsItem = {
   imageUrl: string;
   description: string;
+  slug?: string;
+  link?: string;
 };
 
 function ExternalArrow() {
@@ -37,8 +40,8 @@ function ChevronRight() {
   );
 }
 
-function NewsCard({ imageUrl, description }: NewsItem) {
-  return (
+function NewsCard({ imageUrl, description, slug, link }: NewsItem) {
+  const inner = (
     <div className="group flex flex-col gap-4 cursor-pointer">
       <div className="relative h-[470px] w-full overflow-hidden shrink-0">
         {/* Image zooms on hover */}
@@ -68,6 +71,9 @@ function NewsCard({ imageUrl, description }: NewsItem) {
       </div>
     </div>
   );
+  if (link) return <a href={link} target="_blank" rel="noopener noreferrer" className="block">{inner}</a>;
+  if (slug) return <Link href={`/news/${slug}`} className="block">{inner}</Link>;
+  return <div>{inner}</div>;
 }
 
 // One card width + gap + divider + gap = 354 + 31 + 1 + 31 = 417px

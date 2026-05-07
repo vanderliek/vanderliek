@@ -18,7 +18,7 @@ export function FooterParallaxWrapper({ children }: { children: React.ReactNode 
       scrollTrigger: {
         trigger: wrap,
         start: "clamp(top bottom)",
-        end: "clamp(top top)",
+        end: "clamp(bottom bottom)",
         scrub: true,
       },
     });

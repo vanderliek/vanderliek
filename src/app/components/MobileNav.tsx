@@ -9,7 +9,7 @@ import { useTalkModal } from "./TalkModal";
 
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: "About", href: "/about" },
-  { label: "Services", href: "#services" },
+  { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },

@@ -1,8 +1,11 @@
 import { groq } from "next-sanity";
 
 export const newsItemsQuery = groq`*[_type == "newsItem"] | order(order asc) {
+  _id,
+  "slug": slug.current,
   "imageUrl": image.asset->url,
-  description
+  description,
+  link
 }`;
 
 export const newsPageQuery = groq`*[_type == "newsItem"] | order(order asc) {

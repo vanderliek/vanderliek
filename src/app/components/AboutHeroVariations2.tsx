@@ -80,7 +80,10 @@ export function AboutHeroD() {
 
           {/* Stats — [ About ] labels the block */}
           <div className="mt-auto pt-6 border-t border-[#1f1f1f]/10">
-            <p className="font-mono text-[10px] text-[#1f1f1f]/30 uppercase tracking-[0.2em] mb-5">[ About ]</p>
+            <div className="flex items-center justify-between mb-5">
+              <p className="font-mono text-[10px] text-[#1f1f1f]/30 uppercase tracking-[0.2em]">[ About ]</p>
+              <p className="font-mono text-[12px] text-[#1f1f1f]/30 tracking-[0.2em]">001</p>
+            </div>
             <div ref={statsRef} className="grid grid-cols-4">
               {STATS.map((s, i) => (
                 <div key={s.label} className={`flex flex-col gap-1.5 pr-6 ${i > 0 ? "border-l border-[#1f1f1f]/10 pl-6" : ""}`}>
@@ -105,29 +108,30 @@ export function AboutHeroD() {
             className="absolute inset-0 w-full h-full object-cover object-center"
             style={{ transform: "scaleX(-1)" }}
           />
-          <p className="absolute bottom-6 right-7 font-mono text-[12px] text-white/40 tracking-[0.2em]">001</p>
         </div>
       </div>
 
       {/* Mobile */}
       <div className="min-[1024px]:hidden px-5 py-10 flex flex-col gap-7">
-        <div className="flex justify-between">
-          <p className="font-mono text-[11px] text-[#1f1f1f] uppercase tracking-[0.2em]">[ About ]</p>
-          <p className="font-mono text-[11px] text-[#1f1f1f]/30">001</p>
-        </div>
         <div className="w-full aspect-[4/5] overflow-hidden relative">
           <img src="/about/portrait.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" style={{ transform: "scaleX(-1)" }} />
         </div>
         <div className="font-light text-[#1f1f1f] uppercase leading-[0.88] tracking-[-0.07em] text-[30px]">
           A creative director <Amp /> photographer based on the south side of chicago.
         </div>
-        <div className="grid grid-cols-2 gap-y-5 border-t border-[#1f1f1f]/10 pt-6">
-          {STATS.map(s => (
-            <div key={s.label} className="flex flex-col gap-1">
-              <span className="font-light text-[#1f1f1f] leading-none tracking-[-0.06em] text-[36px]">{s.num}</span>
-              <p className="font-mono text-[10px] text-[#1f1f1f]/40 uppercase tracking-[0.18em]">{s.label}</p>
-            </div>
-          ))}
+        <div className="border-t border-[#1f1f1f]/10 pt-6 flex flex-col gap-5">
+          <div className="flex justify-between">
+            <p className="font-mono text-[11px] text-[#1f1f1f] uppercase tracking-[0.2em]">[ About ]</p>
+            <p className="font-mono text-[11px] text-[#1f1f1f]/30">001</p>
+          </div>
+          <div className="grid grid-cols-2 gap-y-5">
+            {STATS.map(s => (
+              <div key={s.label} className="flex flex-col gap-1">
+                <span className="font-light text-[#1f1f1f] leading-none tracking-[-0.06em] text-[36px]">{s.num}</span>
+                <p className="font-mono text-[10px] text-[#1f1f1f]/40 uppercase tracking-[0.18em]">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

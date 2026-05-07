@@ -53,7 +53,7 @@ export default async function NewsDetailPage({ params }: Props) {
 
       {/* ── Header strip: breadcrumb + meta ── */}
       <section data-nav-theme="light" className="bg-white px-8 pt-[140px] pb-0 max-[989px]:px-4 max-[989px]:pt-[110px]">
-        <div className="flex items-center justify-between border-b border-black/10 pb-6">
+        <div className="flex items-center justify-between border-b border-black/10 pb-6 max-[989px]:flex-col max-[989px]:items-start max-[989px]:gap-2">
           <div className="flex items-center gap-3">
             <a
               href="/news"
@@ -62,7 +62,7 @@ export default async function NewsDetailPage({ params }: Props) {
               News
             </a>
             <span className="font-mono text-[12px] text-[#1f1f1f]/30">/</span>
-            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-[#1f1f1f] truncate max-w-[300px]">
+            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-[#1f1f1f] max-[989px]:truncate max-[989px]:max-w-[240px]">
               {item.title}
             </span>
           </div>
@@ -106,31 +106,33 @@ export default async function NewsDetailPage({ params }: Props) {
 
       {/* ── Body: description + external link ── */}
       <section data-nav-theme="light" className="bg-white px-8 pb-[100px] max-[989px]:px-4 max-[989px]:pb-16">
-        <div className="max-w-[760px]">
+        <div className="max-w-[760px] max-[989px]:max-w-none">
           {item.description && (
-            <p className="text-[20px] max-[989px]:text-[17px] leading-[1.7] tracking-[-0.02em] text-[#1f1f1f] mb-12">
+            <p className="text-[20px] max-[989px]:text-[17px] leading-[1.7] tracking-[-0.02em] text-[#1f1f1f] mb-12 max-[989px]:mb-8 max-[989px]:border-b max-[989px]:border-black/10 max-[989px]:pb-8">
               {item.description}
             </p>
           )}
 
           {item.link && (
-            <a
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[13px] font-medium tracking-[-0.02em] bg-black text-white rounded-full px-5 py-3 hover:bg-[#333] transition-colors duration-300"
-            >
-              Read Full Article
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path
-                  d="M2 10L10 2M10 2H4M10 2V8"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
+            <div className="max-[989px]:pt-2">
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[13px] font-medium tracking-[-0.02em] bg-black text-white rounded-full px-5 py-3 hover:bg-[#333] transition-colors duration-300"
+              >
+                Read Full Article
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path
+                    d="M2 10L10 2M10 2H4M10 2V8"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
           )}
         </div>
       </section>

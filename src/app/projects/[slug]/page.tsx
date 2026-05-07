@@ -36,7 +36,7 @@ export default async function ProjectPage({ params }: Props) {
 
       {/* ── Header strip: breadcrumb + year ── */}
       <section data-nav-theme="light" className="bg-white px-8 pt-[140px] pb-0 max-[989px]:px-4 max-[989px]:pt-[110px]">
-        <div className="flex items-center justify-between border-b border-black/10 pb-6 mb-0">
+        <div className="flex items-center justify-between border-b border-black/10 pb-6 mb-0 max-[989px]:flex-col max-[989px]:items-start max-[989px]:gap-2">
           <div className="flex items-center gap-3">
             <a
               href="/projects"
@@ -108,7 +108,7 @@ export default async function ProjectPage({ params }: Props) {
           </div>
 
           {/* Meta — 40% */}
-          <div className="flex-[2] min-w-0 flex flex-col gap-8 border-l border-black/10 pl-16 max-[989px]:border-l-0 max-[989px]:border-t max-[989px]:pl-0 max-[989px]:pt-8">
+          <div className="flex-[2] min-w-0 flex flex-col gap-8 border-l border-black/10 pl-16 max-[989px]:border-l-0 max-[989px]:border-t max-[989px]:pl-0 max-[989px]:pt-8 max-[989px]:grid max-[989px]:grid-cols-2 max-[989px]:gap-x-6 max-[989px]:gap-y-6">
             {project.client && (
               <div>
                 <p className="font-mono text-[10px] text-[#1f1f1f]/40 uppercase tracking-[0.18em] mb-2">Client</p>
@@ -138,7 +138,7 @@ export default async function ProjectPage({ params }: Props) {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 flex items-center gap-2 self-start text-[13px] font-medium tracking-[-0.02em] bg-black text-white rounded-full px-5 py-3 hover:bg-[#333] transition-colors duration-300"
+                className="mt-4 flex items-center gap-2 self-start text-[13px] font-medium tracking-[-0.02em] bg-black text-white rounded-full px-5 py-3 hover:bg-[#333] transition-colors duration-300 max-[989px]:col-span-2 max-[989px]:mt-0"
               >
                 View Live Project
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
